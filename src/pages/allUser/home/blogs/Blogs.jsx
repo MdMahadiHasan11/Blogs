@@ -10,6 +10,45 @@ const Blogs = () => {
     const [allBlogs, , refetch] = useAllBlogs(); // Fetch all blogs
     const axiosPublic = useAxiosPublic();
 
+    //
+    const [file, setFile] = useState(null);
+    const [message, setMessage] = useState("");
+
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!file) {
+            setMessage("Please select a file to upload.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const response = await fetch("http://localhost:5000/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                setMessage("Image uploaded successfully!");
+            } else {
+                setMessage("Failed to upload image.");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            setMessage("An error occurred.");
+        }
+    };
+
+    //
+    //
+    //
+
     // Pagination state
     const [searchResults, setSearchResults] = useState([]); // Initialize as an empty array
     const [currentPage, setCurrentPage] = useState(1);
@@ -144,6 +183,26 @@ const Blogs = () => {
                             </li>
                         </ul>
                     </details>
+                </div>
+            </div>
+
+            <div className="my-10">
+
+                <p className="font-bold text-2xl text-center">INPUT</p>
+
+                <div className="mt-6">
+
+
+
+                    <div>
+                        <h1>Upload Image</h1>
+                        <form onSubmit={handleSubmit}>
+                            <input type="file" accept="image/*" onChange={handleFileChange} />
+                            <button type="submit">Upload</button>
+                        </form>
+                        {message && <p>{message}</p>}
+                    </div>
+
                 </div>
             </div>
 

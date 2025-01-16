@@ -9,6 +9,8 @@ import ErrorPageShow from "../../pages/errorPageShow/ErrorPageShow";
 import PrivateRoute from "../privateRoute/PrivateRoute";
 import About from "../../pages/about/About";
 import Blogs from "../../pages/allUser/home/blogs/Blogs";
+import Epaper from "../../pages/epaper/Epaper";
+import EPaperView from "../../pages/epaper/EPaperView";
 
 
 const Router = createBrowserRouter([
@@ -36,6 +38,14 @@ const Router = createBrowserRouter([
             {
                 path: "/blog",
                 element:<Blogs></Blogs>,
+            },
+            {
+                path: "/epaper",
+                element:<Epaper></Epaper>,
+            },
+            {
+                path: "/epaperview",
+                element:<EPaperView></EPaperView>,
             },
             // {
             //     path: "/allCategoryMedicines/:category",

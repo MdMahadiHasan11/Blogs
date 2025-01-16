@@ -40,6 +40,18 @@ const Navbar = () => {
                     >
                         About
                     </NavLink>
+                    <NavLink
+                        to="/epaper"
+                        className="text-sm font-medium hover:text-secondary transition-colors duration-300"
+                    >
+                        EPaper
+                    </NavLink>
+                    <NavLink
+                        to="/epaperview"
+                        className="text-sm font-medium hover:text-secondary transition-colors duration-300"
+                    >
+                        EPaperView
+                    </NavLink>
 
                     {/* User Authentication Links */}
                     {user ? (
